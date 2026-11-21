@@ -1,0 +1,250 @@
+/* ==========================================================================
+   Dener Eduardo — Portfolio Styles
+   Dark Mode Minimalist Design System (#0B0F19 / #111827 / #3B82F6 / #10B981)
+   ========================================================================== */
+
+:root {
+  --bg-main: #0B0F19;
+  --bg-sidebar: #0D121F;
+  --bg-card: #111827;
+  --border-subtle: #1F2937;
+  --accent-blue: #3B82F6;
+  --accent-emerald: #10B981;
+  --text-primary: #F9FAFB;
+  --text-secondary: #9CA3AF;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--bg-main);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom Dark Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0F19;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1F2937;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+/* Subtle Hero Radial Ambient Glow */
+.hero-glow {
+  background:
+    radial-gradient(650px circle at 15% 10%, rgba(59, 130, 246, 0.09), transparent 55%),
+    radial-gradient(500px circle at 85% 20%, rgba(16, 185, 129, 0.06), transparent 50%);
+}
+
+/* Subtle Grid Texture Overlay (very faint for depth without noise) */
+.bg-subtle-grid {
+  background-image:
+    linear-gradient(to right, rgba(31, 41, 55, 0.28) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(31, 41, 55, 0.28) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 55% at 50% 0%, #000 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 55% at 50% 0%, #000 40%, transparent 100%);
+}
+
+/* Animated Rotating Gradient Avatar Ring */
+@keyframes avatar-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.avatar-animated-ring {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  isolation: isolate;
+}
+
+.avatar-animated-ring::before,
+.avatar-animated-ring::after {
+  content: '';
+  position: absolute;
+  border-radius: 9999px;
+  background: conic-gradient(
+    from 0deg,
+    #3B82F6 0deg,
+    #8B5CF6 90deg,
+    #10B981 180deg,
+    #06B6D4 270deg,
+    #3B82F6 360deg
+  );
+  animation: avatar-spin 5s linear infinite;
+  pointer-events: none;
+}
+
+.avatar-animated-ring::before {
+  inset: 0;
+  z-index: 0;
+}
+
+.avatar-animated-ring::after {
+  inset: -3px;
+  filter: blur(10px);
+  opacity: 0.45;
+  z-index: -1;
+}
+
+.avatar-animated-ring--sm::after {
+  display: none;
+}
+
+.avatar-animated-ring > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Pulsing Availability Dot */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.75;
+  }
+  70% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+}
+
+.status-ping {
+  animation: pulse-ring 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+/* Sidebar Navigation Link & Active ScrollSpy State */
+.nav-link {
+  position: relative;
+  transition: color 180ms ease, background-color 180ms ease, transform 180ms ease;
+}
+
+.nav-link .nav-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: #374151;
+  transition: background-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+
+.nav-link:hover {
+  color: #F9FAFB;
+  background-color: rgba(31, 41, 55, 0.45);
+}
+
+.nav-link:hover .nav-indicator {
+  background-color: #60A5FA;
+}
+
+.nav-link.is-active {
+  color: #F9FAFB;
+  background-color: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.25);
+}
+
+.nav-link.is-active .nav-indicator {
+  background-color: #10B981;
+  transform: scale(1.25);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.65);
+}
+
+/* Card Elevation & Subtle Border Hover */
+.surface-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+}
+
+.surface-card:hover {
+  border-color: #334155;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.55);
+}
+
+/* Language Toggle Active Pill */
+.lang-btn[aria-pressed="true"] {
+  background-color: #3B82F6;
+  color: #FFFFFF;
+  box-shadow: 0 1px 6px rgba(59, 130, 246, 0.35);
+}
+
+.lang-btn[aria-pressed="false"] {
+  color: #9CA3AF;
+}
+
+.lang-btn[aria-pressed="false"]:hover {
+  color: #F9FAFB;
+}
+
+/* Scroll-Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 550ms cubic-bezier(0.16, 1, 0.3, 1), transform 550ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scroll margin so anchor links align cleanly below mobile sticky topbar */
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+@media (min-width: 1024px) {
+  section[id] {
+    scroll-margin-top: 3rem;
+  }
+}
+
+/* Accessibility: respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .status-ping,
+  .avatar-animated-ring::before,
+  .avatar-animated-ring::after {
+    animation: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .surface-card,
+  .nav-link {
+    transition: none;
+  }
+}

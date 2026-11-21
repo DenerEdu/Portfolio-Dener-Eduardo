@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dener Eduardo — Dados, Automação &amp; IA Generativa</title>
+  <meta
+    name="description"
+    content="Portfólio de Dener Eduardo: Dados, Automação de Processos, Análise Financeira e Aplicações com Inteligência Artificial Generativa."
+  />
+  <meta name="theme-color" content="#0B0F19" />
+
+  <!-- Google Fonts: Inter, Playfair Display (italic accents), JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;1,500;1,600;1,700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#0B0F19',
+            sidebar: '#0D121F',
+            surface: '#111827',
+            subtle: '#1F2937',
+            accent: '#3B82F6',
+            emerald: '#10B981'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-[#0B0F19] text-[#F9FAFB] font-sans antialiased selection:bg-[#3B82F6]/30 selection:text-white">
+
+  <!-- Mobile Sticky Top Bar -->
+  <header class="lg:hidden sticky top-0 z-30 flex items-center justify-between px-4 sm:px-6 h-16 bg-[#0B0F19]/90 backdrop-blur-md border-b border-[#1F2937]">
+    <a href="#inicio" class="flex items-center gap-3 min-w-0">
+      <span class="avatar-animated-ring avatar-animated-ring--sm p-[2px] rounded-full shrink-0">
+        <span class="relative flex items-center justify-center w-9 h-9 rounded-full bg-[#0B0F19] p-[1.5px] overflow-hidden text-xs font-semibold tracking-tight text-white">
+          <img
+            src="assets/perfil.jpg"
+            alt="Dener Eduardo"
+            data-profile-img
+            class="w-full h-full object-cover object-top rounded-full hidden"
+          />
+          <span data-profile-fallback class="select-none" aria-hidden="true">DE</span>
+        </span>
+      </span>
+      <span class="font-semibold text-sm tracking-tight text-[#F9FAFB] truncate">Dener Eduardo</span>
+    </a>
+
+    <div class="flex items-center gap-2.5">
+      <!-- Compact Mobile Language Toggle -->
+      <div
+        class="inline-flex items-center rounded-lg bg-[#111827] border border-[#1F2937] p-0.5 text-xs font-mono"
+        role="group"
+        data-i18n-aria="sidebar.langAria"
+        aria-label="Alternar idioma entre Português e Inglês"
+      >
+        <button
+          type="button"
+          data-lang-btn="pt"
+          aria-pressed="true"
+          class="lang-btn px-2 py-1 rounded-md font-medium transition-colors"
+        >
+          PT
+        </button>
+        <button
+          type="button"
+          data-lang-btn="en"
+          aria-pressed="false"
+          class="lang-btn px-2 py-1 rounded-md font-medium transition-colors"
+        >
+          EN
+        </button>
+      </div>
+
+      <!-- Hamburger Button -->
+      <button
+        id="mobile-menu-open"
+        type="button"
+        aria-controls="sidebar"
+        aria-expanded="false"
+        data-i18n-aria="sidebar.openMenuAria"
+        aria-label="Abrir menu de navegação"
+        class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-[#111827] border border-[#1F2937] text-[#D1D5DB] hover:text-white hover:border-[#374151] transition-colors"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Backdrop -->
+  <div
+    id="sidebar-backdrop"
+    class="fixed inset-0 z-40 bg-black/70 backdrop-blur-xs hidden opacity-0 transition-opacity duration-200 lg:hidden"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Fixed Left Sidebar (Desktop) / Slide-Over Drawer (Mobile) -->
+  <aside
+    id="sidebar"
+    class="fixed inset-y-0 left-0 z-50 w-[290px] xl:w-[300px] bg-[#0D121F] border-r border-[#1F2937] flex flex-col justify-between px-6 py-7 overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out"
+  >
+    <div>
+      <!-- Mobile Close Button -->
+      <div class="flex justify-end lg:hidden mb-2">
+        <button
+          id="mobile-menu-close"
+          type="button"
+          data-i18n-aria="sidebar.closeMenuAria"
+          aria-label="Fechar menu de navegação"
+          class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#111827] border border-[#1F2937] text-[#9CA3AF] hover:text-white transition-colors"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Profile Header -->
+      <div class="flex flex-col items-start">
+        <div class="avatar-animated-ring p-[3.5px] rounded-full mb-5">
+          <div class="relative w-28 h-28 rounded-full bg-[#0D121F] p-[3px] overflow-hidden flex items-center justify-center">
+            <img
+              id="profile-photo"
+              src="assets/perfil.jpg"
+              alt="Dener Eduardo"
+              data-profile-img
+              class="w-full h-full object-cover object-top rounded-full hidden"
+            />
+            <div
+              id="profile-fallback"
+              data-profile-fallback
+              class="w-full h-full rounded-full bg-gradient-to-br from-[#111827] to-[#0B0F19] flex items-center justify-center text-2xl font-semibold tracking-tight text-[#F9FAFB] select-none"
+              aria-hidden="true"
+            >
+              DE
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-lg font-semibold tracking-tight text-[#F9FAFB]">Dener Eduardo</h2>
+        <p class="text-xs sm:text-[13px] text-[#9CA3AF] mt-1 leading-snug" data-i18n="sidebar.subtitle">
+          Dados, Automação &amp; IA Generativa
+        </p>
+
+        <!-- Availability Status Badge -->
+        <div class="mt-3.5 inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#10B981]/10 border border-[#10B981]/25">
+          <span class="relative flex h-2 w-2 shrink-0" aria-hidden="true">
+            <span class="status-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981]"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]"></span>
+          </span>
+          <span class="text-[11px] font-medium text-[#10B981] leading-none" data-i18n="sidebar.status">
+            Disponível para oportunidades
+          </span>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="h-px bg-[#1F2937] my-6"></div>
+
+      <!-- Navigation Links -->
+      <nav data-i18n-aria="sidebar.navAria" aria-label="Navegação principal" class="space-y-1">
+        <a
+          href="#inicio"
+          data-section="inicio"
+          class="nav-link is-active flex items-center justify-between px-3 py-2 rounded-lg border border-transparent text-sm font-medium text-[#9CA3AF]"
+        >
+          <span class="flex items-center gap-3">
+            <span class="nav-indicator" aria-hidden="true"></span>
+            <span data-i18n="nav.home">Início</span>
+          </span>
+          <span class="text-[11px] font-mono text-[#6B7280]">00</span>
+        </a>
+
+        <a
+          href="#sobre"
+          data-section="sobre"
+          class="nav-link flex items-center justify-between px-3 py-2 rounded-lg border border-transparent text-sm font-medium text-[#9CA3AF]"
+        >
+          <span class="flex items-center gap-3">
+            <span class="nav-indicator" aria-hidden="true"></span>
+            <span data-i18n="nav.about">Sobre</span>
+          </span>
+          <span class="text-[11px] font-mono text-[#6B7280]">01</span>
+        </a>
+
+        <a
+          href="#diferenciais"
+          data-section="diferenciais"
+          class="nav-link flex items-center justify-between px-3 py-2 rounded-lg border border-transparent text-sm font-medium text-[#9CA3AF]"
+        >
+          <span class="flex items-center gap-3">
+            <span class="nav-indicator" aria-hidden="true"></span>
+            <span data-i18n="nav.strengths">Diferenciais</span>
+          </span>
+          <span class="text-[11px] font-mono text-[#6B7280]">02</span>
+        </a>
+
+        <a
+          href="#experiencia"
+          data-section="experiencia"
+          class="nav-link flex items-center justify-between px-3 py-2 rounded-lg border border-transparent text-sm font-medium text-[#9CA3AF]"
+        >
+          <span class="flex items-center gap-3">
+            <span class="nav-indicator" aria-hidden="true"></span>
+            <span data-i18n="nav.experience">Experiência</span>
+          </span>
+          <span class="text-[11px] font-mono text-[#6B7280]">03</span>
+        </a>
+
+        <a
+          href="#projetos"
+          data-section="projetos"
+          class="nav-link flex items-center justify-between px-3 py-2 rounded-lg border border-transparent text-sm font-medium text-[#9CA3AF]"
+        >
+          <span class="flex items-center gap-3">
+            <span class="nav-indicator" aria-hidden="true"></span>
+            <span data-i18n="nav.projects">Projetos</span>
+          </span>
+          <span class="text-[11px] font-mono text-[#6B7280]">04</span>
+        </a>
+
+        <a
+          href="#skills"
+          data-section="skills"
+          class="nav-link flex items-center justify-between px-3 py-2 rounded-lg border border-transparent text-sm font-medium text-[#9CA3AF]"
+        >
+          <span class="flex items-center gap-3">
+            <span class="nav-indicator" aria-hidden="true"></span>
+            <span data-i18n="nav.skills">Skills</span>
+          </span>
+          <span class="text-[11px] font-mono text-[#6B7280]">05</span>
+        </a>
+
+        <a
+          href="#formacao"
+          data-section="formacao"
+          class="nav-link flex items-center justify-between px-3 py-2 rounded-lg border border-transparent text-sm font-medium text-[#9CA3AF]"
+        >
+          <span class="flex items-center gap-3">
+            <span class="nav-indicator" aria-hidden="true"></span>
+            <span data-i18n="nav.education">Formação</span>
+          </span>
+          <span class="text-[11px] font-mono text-[#6B7280]">06</span>
+        </a>
+
+        <a
+          href="#contato"
+          data-section="contato"
+          class="nav-link flex items-center justify-between px-3 py-2 rounded-lg border border-transparent text-sm font-medium text-[#9CA3AF]"
+        >
+          <span class="flex items-center gap-3">
+            <span class="nav-indicator" aria-hidden="true"></span>
+            <span data-i18n="nav.contact">Contato</span>
+          </span>
+          <span class="text-[11px] font-mono text-[#6B7280]">07</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Sidebar Footer: Language Toggle & Compact Social Links -->
+    <div class="pt-6 mt-6 border-t border-[#1F2937] space-y-4">
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] font-mono uppercase tracking-wider text-[#6B7280]">ID / LANG</span>
+        <div
+          class="inline-flex items-center rounded-lg bg-[#111827] border border-[#1F2937] p-0.5 text-xs font-mono"
+          role="group"
+          data-i18n-aria="sidebar.langAria"
+          aria-label="Alternar idioma entre Português e Inglês"
+        >
+          <button
+            type="button"
+            data-lang-btn="pt"
+            aria-pressed="true"
+            class="lang-btn px-2.5 py-1 rounded-md font-medium transition-colors"
+          >
+            PT
+          </button>
+          <button
+            type="button"
+            data-lang-btn="en"
+            aria-pressed="false"
+            class="lang-btn px-2.5 py-1 rounded-md font-medium transition-colors"
+          >
+            EN
+          </button>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a
+          href="https://www.linkedin.com/in/denereduardo/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+          title="LinkedIn"
+          class="flex-1 inline-flex items-center justify-center h-9 rounded-lg bg-[#111827] border border-[#1F2937] text-[#9CA3AF] hover:text-white hover:border-[#3B82F6]/50 transition-colors"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+          </svg>
+        </a>
+
+        <a
+          href="https://github.com/DenerEdu"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+          title="GitHub"
+          class="flex-1 inline-flex items-center justify-center h-9 rounded-lg bg-[#111827] border border-[#1F2937] text-[#9CA3AF] hover:text-white hover:border-[#3B82F6]/50 transition-colors"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+          </svg>
+        </a>
+
+        <a
+          href="https://huggingface.co/DenerEdu"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Hugging Face"
+          title="Hugging Face"
+          class="flex-1 inline-flex items-center justify-center h-9 rounded-lg bg-[#111827] border border-[#1F2937] text-[#9CA3AF] hover:text-white hover:border-[#10B981]/50 transition-colors text-xs font-mono font-medium"
+        >
+          HF
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="lg:ml-[290px] xl:ml-[300px] min-h-screen relative">
+    <!-- Subtle Background Ambient Lighting -->
+    <div class="pointer-events-none fixed inset-0 lg:left-[290px] xl:left-[300px] hero-glow z-0" aria-hidden="true"></div>
+    <div class="pointer-events-none fixed inset-x-0 top-0 h-[520px] lg:left-[290px] xl:left-[300px] bg-subtle-grid z-0" aria-hidden="true"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-6 sm:px-10 lg:px-14 xl:px-16 pb-16">
+
+      <!-- ================================================================
+           1. INÍCIO (HERO)
+           ================================================================ -->
+      <section id="inicio" class="pt-12 sm:pt-16 lg:pt-24 pb-16 border-b border-[#1F2937]">
+        <p class="font-mono text-xs sm:text-[13px] tracking-[0.16em] uppercase text-[#10B981] font-medium mb-5" data-i18n="hero.eyebrow">
+          — OLÁ, EU SOU O DENER
+        </p>
+
+        <h1
+          class="text-3xl sm:text-5xl lg:text-[3.25rem] font-semibold tracking-tight leading-[1.15] text-[#F9FAFB] max-w-3xl"
+          data-i18n-html="hero.headlineHtml"
+        >
+          Transformo dados e processos operacionais em
+          <em class="font-serif italic text-[#10B981] font-medium">automações</em>
+          inteligentes e soluções com
+          <em class="font-serif italic text-[#3B82F6] font-medium">IA</em>.
+        </h1>
+
+        <p
+          class="mt-6 text-base sm:text-lg text-[#9CA3AF] leading-relaxed max-w-2xl"
+          data-i18n="hero.subheadline"
+        >
+          Estudante de Sistemas de Informação (UNIFAFIBE) com sólida experiência em controle financeiro, automação de fluxos e desenvolvimento de aplicações práticas com Python, SQL e Inteligência Artificial.
+        </p>
+
+        <!-- Primary CTAs -->
+        <div class="mt-8 flex flex-wrap items-center gap-3.5">
+          <a
+            href="#projetos"
+            class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-[#3B82F6] hover:bg-[#2563EB] text-white text-sm font-semibold shadow-lg shadow-[#3B82F6]/20 transition-all"
+            data-i18n="hero.ctaProjects"
+          >
+            Ver projetos →
+          </a>
+
+          <a
+            href="https://github.com/DenerEdu"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center px-4 py-3 rounded-xl bg-[#111827] border border-[#1F2937] hover:border-[#374151] hover:bg-[#161F30] text-[#E5E7EB] text-sm font-medium transition-all"
+            data-i18n="hero.ctaGithub"
+          >
+            GitHub ↗
+          </a>
+
+          <a
+            href="https://huggingface.co/DenerEdu"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center px-4 py-3 rounded-xl bg-[#111827] border border-[#1F2937] hover:border-[#10B981]/50 hover:bg-[#161F30] text-[#E5E7EB] text-sm font-medium transition-all"
+            data-i18n="hero.ctaHf"
+          >
+            Hugging Face ↗
+          </a>
+        </div>
+
+        <!-- 4 Hero KPI Cards -->
+        <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          <div class="surface-card rounded-2xl p-5">
+            <span class="font-mono text-[11px] text-[#3B82F6] uppercase tracking-wider">01</span>
+            <p class="mt-2 text-lg font-semibold text-[#F9FAFB]" data-i18n="hero.kpi1.title">4º Semestre</p>
+            <p class="mt-1 text-xs sm:text-[13px] text-[#9CA3AF] leading-snug" data-i18n="hero.kpi1.desc">
+              Sistemas de Informação (UNIFAFIBE)
+            </p>
+          </div>
+
+          <div class="surface-card rounded-2xl p-5">
+            <span class="font-mono text-[11px] text-[#10B981] uppercase tracking-wider">02</span>
+            <p class="mt-2 text-lg font-semibold text-[#F9FAFB]" data-i18n="hero.kpi2.title">6+ Apps de IA</p>
+            <p class="mt-1 text-xs sm:text-[13px] text-[#9CA3AF] leading-snug" data-i18n="hero.kpi2.desc">
+              Em produção no Hugging Face &amp; Web
+            </p>
+          </div>
+
+          <div class="surface-card rounded-2xl p-5">
+            <span class="font-mono text-[11px] text-[#3B82F6] uppercase tracking-wider">03</span>
+            <p class="mt-2 text-lg font-semibold text-[#F9FAFB]" data-i18n="hero.kpi3.title">Dados &amp; Automação</p>
+            <p class="mt-1 text-xs sm:text-[13px] text-[#9CA3AF] leading-snug" data-i18n="hero.kpi3.desc">
+              Python, SQL, Excel Avançado &amp; SAP
+            </p>
+          </div>
+
+          <div class="surface-card rounded-2xl p-5">
+            <span class="font-mono text-[11px] text-[#10B981] uppercase tracking-wider">04</span>
+            <p class="mt-2 text-lg font-semibold text-[#F9FAFB]" data-i18n="hero.kpi4.title">Gestão &amp; Finanças</p>
+            <p class="mt-1 text-xs sm:text-[13px] text-[#9CA3AF] leading-snug" data-i18n="hero.kpi4.desc">
+              Controle financeiro, jurídico e BI
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           2. SOBRE (ABOUT)
+           ================================================================ -->
+      <section id="sobre" class="py-16 lg:py-20 border-b border-[#1F2937] reveal">
+        <p class="font-mono text-xs tracking-[0.14em] uppercase text-[#6B7280] mb-3" data-i18n="about.eyebrow">
+          01 / SOBRE MIM
+        </p>
+        <h2
+          class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F9FAFB]"
+          data-i18n-html="about.titleHtml"
+        >
+          Da operação financeira à <em class="font-serif italic text-[#10B981] font-medium">engenharia</em> de soluções.
+        </h2>
+
+        <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div class="lg:col-span-7 space-y-5 text-[#D1D5DB] text-[15px] sm:text-base leading-relaxed">
+            <p data-i18n="about.p1">
+              Minha trajetória profissional nasceu na linha de frente administrativa e financeira — conduzindo controles de fluxo de caixa, rotinas orçamentárias em ERP/SAP, planilhas gerenciais complexas e a automação de documentos e petições em ambiente jurídico.
+            </p>
+            <p data-i18n="about.p2">
+              Essa vivência prática de negócio moldou meu foco atual na graduação em Sistemas de Informação (UNIFAFIBE): unir o rigor analítico da gestão financeira com Python, SQL, Engenharia de Dados e IA Generativa para eliminar gargalos operacionais e colocar soluções reais em produção.
+            </p>
+          </div>
+
+          <div class="lg:col-span-5 surface-card rounded-2xl p-6 space-y-4">
+            <p class="font-mono text-[11px] uppercase tracking-widest text-[#3B82F6]" data-i18n="about.card.label">
+              PERFIL PROFISSIONAL
+            </p>
+
+            <div class="space-y-3 text-sm">
+              <div class="pb-3 border-b border-[#1F2937]">
+                <span class="block text-xs text-[#6B7280]" data-i18n="about.card.focusLabel">Foco atual</span>
+                <span class="mt-0.5 block font-medium text-[#F9FAFB]" data-i18n="about.card.focusValue">
+                  Dados, Automação &amp; IA Generativa
+                </span>
+              </div>
+
+              <div class="pb-3 border-b border-[#1F2937]">
+                <span class="block text-xs text-[#6B7280]" data-i18n="about.card.eduLabel">Graduação</span>
+                <span class="mt-0.5 block font-medium text-[#F9FAFB]" data-i18n="about.card.eduValue">
+                  Sistemas de Informação — UNIFAFIBE (4º Sem.)
+                </span>
+              </div>
+
+              <div class="pb-3 border-b border-[#1F2937]">
+                <span class="block text-xs text-[#6B7280]" data-i18n="about.card.baseLabel">Base técnica</span>
+                <span class="mt-0.5 block font-medium text-[#F9FAFB]" data-i18n="about.card.baseValue">
+                  Python • SQL • Hugging Face • Excel/SAP
+                </span>
+              </div>
+
+              <div class="pb-3 border-b border-[#1F2937]">
+                <span class="block text-xs text-[#6B7280]" data-i18n="about.card.locLabel">Localidade</span>
+                <span class="mt-0.5 block font-medium text-[#F9FAFB]" data-i18n="about.card.locValue">
+                  Bebedouro - SP • Remoto, Híbrido ou Presencial
+                </span>
+              </div>
+
+              <div>
+                <span class="block text-xs text-[#6B7280]" data-i18n="about.card.langLabel">Idiomas</span>
+                <span class="mt-0.5 block font-medium text-[#F9FAFB]" data-i18n="about.card.langValue">
+                  Português (Nativo) • Inglês (Avançado) • Espanhol (Intermediário)
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           3. DIFERENCIAIS (STRENGTHS)
+           ================================================================ -->
+      <section id="diferenciais" class="py-16 lg:py-20 border-b border-[#1F2937] reveal">
+        <p class="font-mono text-xs tracking-[0.14em] uppercase text-[#6B7280] mb-3" data-i18n="strengths.eyebrow">
+          02 / DIFERENCIAIS
+        </p>
+        <h2
+          class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F9FAFB]"
+          data-i18n-html="strengths.titleHtml"
+        >
+          Pilares que conectam <em class="font-serif italic text-[#10B981] font-medium">negócio</em> e código.
+        </h2>
+
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Card 1 -->
+          <article class="surface-card rounded-2xl p-6">
+            <div class="w-10 h-10 rounded-xl bg-[#3B82F6]/10 border border-[#3B82F6]/25 flex items-center justify-center text-[#3B82F6] mb-4">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-[#F9FAFB]" data-i18n="strengths.item1.title">
+              Automação de Processos
+            </h3>
+            <p class="mt-2 text-sm text-[#9CA3AF] leading-relaxed" data-i18n="strengths.item1.desc">
+              Mapeamento de gargalos repetitivos e criação de fluxos inteligentes com Python, planilhas avançadas e IA para reduzir trabalho manual e falhas operacionais.
+            </p>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="surface-card rounded-2xl p-6">
+            <div class="w-10 h-10 rounded-xl bg-[#10B981]/10 border border-[#10B981]/25 flex items-center justify-center text-[#10B981] mb-4">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v18h18M9 17V9m4 8V5m4 12v-4" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-[#F9FAFB]" data-i18n="strengths.item2.title">
+              Análise de Dados &amp; BI
+            </h3>
+            <p class="mt-2 text-sm text-[#9CA3AF] leading-relaxed" data-i18n="strengths.item2.desc">
+              Estruturação, limpeza e consulta de dados com SQL, Python e Excel Avançado para transformar registros brutos em indicadores claros de decisão.
+            </p>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="surface-card rounded-2xl p-6">
+            <div class="w-10 h-10 rounded-xl bg-[#3B82F6]/10 border border-[#3B82F6]/25 flex items-center justify-center text-[#3B82F6] mb-4">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-[#F9FAFB]" data-i18n="strengths.item3.title">
+              Desenvolvimento com IA Generativa
+            </h3>
+            <p class="mt-2 text-sm text-[#9CA3AF] leading-relaxed" data-i18n="strengths.item3.desc">
+              Construção e publicação de aplicações práticas com LLMs, NLP, Whisper e Visão Computacional (DETR) via Gradio, Web Apps e Hugging Face.
+            </p>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="surface-card rounded-2xl p-6">
+            <div class="w-10 h-10 rounded-xl bg-[#10B981]/10 border border-[#10B981]/25 flex items-center justify-center text-[#10B981] mb-4">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-[#F9FAFB]" data-i18n="strengths.item4.title">
+              Visão de Negócio &amp; Finanças
+            </h3>
+            <p class="mt-2 text-sm text-[#9CA3AF] leading-relaxed" data-i18n="strengths.item4.desc">
+              Experiência real em fluxo de caixa, orçamento, ERP/SAP e rotinas jurídicas — garantindo que a tecnologia ataque dores concretas de custo, prazo e controle.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           4. EXPERIÊNCIA (EXPERIENCE)
+           ================================================================ -->
+      <section id="experiencia" class="py-16 lg:py-20 border-b border-[#1F2937] reveal">
+        <p class="font-mono text-xs tracking-[0.14em] uppercase text-[#6B7280] mb-3" data-i18n="experience.eyebrow">
+          03 / EXPERIÊNCIA
+        </p>
+        <h2
+          class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F9FAFB]"
+          data-i18n-html="experience.titleHtml"
+        >
+          Trajetória de <em class="font-serif italic text-[#10B981] font-medium">impacto</em> operacional.
+        </h2>
+
+        <div class="mt-10 relative pl-6 sm:pl-8 border-l border-[#1F2937] space-y-10">
+          <!-- Timeline Item 1 -->
+          <article class="relative">
+            <span
+              class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-3.5 h-3.5 rounded-full bg-[#10B981] ring-4 ring-[#0B0F19]"
+              aria-hidden="true"
+            ></span>
+
+            <div class="surface-card rounded-2xl p-6">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span
+                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/25"
+                  data-i18n="experience.item1.period"
+                >
+                  05/2025 – 10/2025
+                </span>
+                <span class="text-xs font-medium text-[#6B7280]" data-i18n="experience.item1.company">
+                  Rissi Sociedade Individual de Advocacia — Pirangi, SP
+                </span>
+              </div>
+
+              <h3 class="mt-3 text-lg font-semibold text-[#F9FAFB]" data-i18n="experience.item1.role">
+                Gestor Financeiro &amp; Automação com IA
+              </h3>
+
+              <ul class="mt-4 space-y-2.5 text-sm text-[#9CA3AF] leading-relaxed">
+                <li class="flex items-start gap-2.5">
+                  <span class="text-[#3B82F6] mt-1 shrink-0">▹</span>
+                  <span data-i18n="experience.item1.b1">
+                    IA e Automação de Fluxos: Estruturação e implementação de soluções de Inteligência Artificial para automatizar documentos, petições e rotinas operacionais, reduzindo o tempo de execução da equipe.
+                  </span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-[#3B82F6] mt-1 shrink-0">▹</span>
+                  <span data-i18n="experience.item1.b2">
+                    Implantação e Gestão de Sistemas: Coordenação da implantação de sistema integrado de controle financeiro e gestão de clientes, aprimorando receitas, despesas e fluxo de caixa.
+                  </span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-[#3B82F6] mt-1 shrink-0">▹</span>
+                  <span data-i18n="experience.item1.b3">
+                    Padronização de Dados e Processos: Automação de planilhas e rotinas internas, definindo padrões de controle, diretrizes de registro e suporte à captação digital de clientes.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Timeline Item 2 -->
+          <article class="relative">
+            <span
+              class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-3.5 h-3.5 rounded-full bg-[#3B82F6] ring-4 ring-[#0B0F19]"
+              aria-hidden="true"
+            ></span>
+
+            <div class="surface-card rounded-2xl p-6">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span
+                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono bg-[#3B82F6]/10 text-[#60A5FA] border border-[#3B82F6]/25"
+                  data-i18n="experience.item2.period"
+                >
+                  03/2023 – 07/2024
+                </span>
+                <span class="text-xs font-medium text-[#6B7280]" data-i18n="experience.item2.company">
+                  Pasta Pastificio e Comércio — São Paulo, SP
+                </span>
+              </div>
+
+              <h3 class="mt-3 text-lg font-semibold text-[#F9FAFB]" data-i18n="experience.item2.role">
+                Analista Financeiro
+              </h3>
+
+              <ul class="mt-4 space-y-2.5 text-sm text-[#9CA3AF] leading-relaxed">
+                <li class="flex items-start gap-2.5">
+                  <span class="text-[#3B82F6] mt-1 shrink-0">▹</span>
+                  <span data-i18n="experience.item2.b1">
+                    Controle, Orçamento e Projeções: Acompanhamento de fluxo de caixa, orçamento, contas a pagar e a receber e projeções financeiras.
+                  </span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-[#3B82F6] mt-1 shrink-0">▹</span>
+                  <span data-i18n="experience.item2.b2">
+                    Relatórios e Inteligência Gerencial: Elaboração de relatórios gerenciais e análises de demonstrações financeiras para apoiar decisões executivas.
+                  </span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-[#3B82F6] mt-1 shrink-0">▹</span>
+                  <span data-i18n="experience.item2.b3">
+                    Otimização Operacional: Negociações com fornecedores e clientes e implementação de melhorias contínuas nas rotinas financeiras e administrativas.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Timeline Item 3 -->
+          <article class="relative">
+            <span
+              class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-3.5 h-3.5 rounded-full bg-[#374151] ring-4 ring-[#0B0F19]"
+              aria-hidden="true"
+            ></span>
+
+            <div class="surface-card rounded-2xl p-6">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span
+                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono bg-[#1F2937] text-[#9CA3AF]"
+                  data-i18n="experience.item3.period"
+                >
+                  08/2015 – 02/2016
+                </span>
+                <span class="text-xs font-medium text-[#6B7280]" data-i18n="experience.item3.company">
+                  Sivantos Soluções Auditivas Ltda — São Paulo, SP
+                </span>
+              </div>
+
+              <h3 class="mt-3 text-lg font-semibold text-[#F9FAFB]" data-i18n="experience.item3.role">
+                Estagiário / Analista de Mercado
+              </h3>
+
+              <ul class="mt-4 space-y-2.5 text-sm text-[#9CA3AF] leading-relaxed">
+                <li class="flex items-start gap-2.5">
+                  <span class="text-[#3B82F6] mt-1 shrink-0">▹</span>
+                  <span data-i18n="experience.item3.b1">
+                    Análise de Dados (SAP e Excel): Análise de dados de faturamento, vendas, importações e performance de mercado com SAP e Excel avançado.
+                  </span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-[#3B82F6] mt-1 shrink-0">▹</span>
+                  <span data-i18n="experience.item3.b2">
+                    Relatórios Estratégicos: Estruturação de relatórios de desempenho, análises de mercado, posicionamento de produtos e acompanhamento da concorrência.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Timeline Item 4 -->
+          <article class="relative">
+            <span
+              class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-3.5 h-3.5 rounded-full bg-[#374151] ring-4 ring-[#0B0F19]"
+              aria-hidden="true"
+            ></span>
+
+            <div class="surface-card rounded-2xl p-6">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span
+                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono bg-[#1F2937] text-[#9CA3AF]"
+                  data-i18n="experience.item4.period"
+                >
+                  06/2011 – 03/2012
+                </span>
+                <span class="text-xs font-medium text-[#6B7280]" data-i18n="experience.item4.company">
+                  Sabiá Residencial Empreendimentos Imobiliários S.A. — São Paulo, SP
+                </span>
+              </div>
+
+              <h3 class="mt-3 text-lg font-semibold text-[#F9FAFB]" data-i18n="experience.item4.role">
+                Assistente Administrativo / Marketing (Jovem Aprendiz)
+              </h3>
+
+              <ul class="mt-4 space-y-2.5 text-sm text-[#9CA3AF] leading-relaxed">
+                <li class="flex items-start gap-2.5">
+                  <span class="text-[#3B82F6] mt-1 shrink-0">▹</span>
+                  <span data-i18n="experience.item4.b1">
+                    Saneamento de Dados e ERP: Apoio à implantação do sistema SAP com saneamento, correção e atualização de bases de dados, além da extração de relatórios em Excel.
+                  </span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-[#3B82F6] mt-1 shrink-0">▹</span>
+                  <span data-i18n="experience.item4.b2">
+                    Operações e Atendimento: Atendimento ao cliente, organização documental e controle de campanhas.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           5. PROJETOS (PROJECTS — 6 PROJECTS)
+           ================================================================ -->
+      <section id="projetos" class="py-16 lg:py-20 border-b border-[#1F2937] reveal">
+        <p class="font-mono text-xs tracking-[0.14em] uppercase text-[#6B7280] mb-3" data-i18n="projects.eyebrow">
+          04 / PROJETOS
+        </p>
+        <h2
+          class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F9FAFB]"
+          data-i18n-html="projects.titleHtml"
+        >
+          Soluções em <em class="font-serif italic text-[#10B981] font-medium">produção</em> &amp; código aberto.
+        </h2>
+        <p class="mt-3 text-sm sm:text-base text-[#9CA3AF] max-w-2xl leading-relaxed" data-i18n="projects.subtitle">
+          Aplicações práticas desenvolvidas para resolver problemas reais de auditoria fiscal, análise financeira, triagem operacional, transcrição de áudio e visão computacional.
+        </p>
+
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Project 1: FiscalFlow AI (Featured) -->
+          <article class="surface-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden">
+            <div>
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-2.5">
+                  <span class="font-mono text-xs text-[#3B82F6]">01</span>
+                  <span
+                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#3B82F6]/10 text-[#60A5FA] border border-[#3B82F6]/25"
+                    data-i18n="projects.featuredBadge"
+                  >
+                    Projeto em Destaque
+                  </span>
+                </div>
+                <span class="font-mono text-[11px] text-[#6B7280]" data-i18n="projects.spaceBadge">
+                  Hugging Face Space
+                </span>
+              </div>
+
+              <h3 class="mt-4 text-xl sm:text-2xl font-semibold text-[#F9FAFB]" data-i18n="projects.p1.title">
+                FiscalFlow AI
+              </h3>
+              <p class="mt-2.5 text-sm sm:text-[15px] text-[#9CA3AF] leading-relaxed max-w-3xl" data-i18n="projects.p1.desc">
+                Aplicação web com IA para extração automatizada de dados e auditoria inteligente de documentos fiscais, acelerando conferências e reduzindo falhas manuais.
+              </p>
+
+              <div class="mt-5 flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]">Python</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]" data-i18n="projects.p1.tag2">IA Generativa</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]" data-i18n="projects.p1.tag3">Automação</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]">Web App</span>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-5 border-t border-[#1F2937] flex flex-wrap items-center gap-3">
+              <a
+                href="https://huggingface.co/spaces/DenerEdu/FiscalFlow-AI"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-[#3B82F6] hover:bg-[#2563EB] text-white text-xs sm:text-sm font-medium transition-colors"
+                data-i18n="projects.btnDemo"
+              >
+                Abrir App ↗
+              </a>
+              <a
+                href="https://huggingface.co/spaces/DenerEdu/FiscalFlow-AI/tree/main"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-[#0B0F19] border border-[#1F2937] hover:border-[#374151] text-[#D1D5DB] hover:text-white text-xs sm:text-sm font-medium transition-colors"
+                data-i18n="projects.btnCode"
+              >
+                Código / Arquivos ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 2: StockGuard AI (Featured) -->
+          <article class="surface-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden">
+            <div>
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-2.5">
+                  <span class="font-mono text-xs text-[#10B981]">02</span>
+                  <span
+                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/25"
+                    data-i18n="projects.featuredBadge"
+                  >
+                    Projeto em Destaque
+                  </span>
+                </div>
+                <span class="font-mono text-[11px] text-[#6B7280]" data-i18n="projects.stockguard.badge">
+                  IA &amp; Controladoria / SAP
+                </span>
+              </div>
+
+              <h3 class="mt-4 text-xl sm:text-2xl font-semibold text-[#F9FAFB] leading-snug" data-i18n="projects.stockguard.title">
+                StockGuard AI — Auditoria Inteligente de Inventário
+              </h3>
+              <p class="mt-2.5 text-sm sm:text-[15px] text-[#9CA3AF] leading-relaxed" data-i18n="projects.stockguard.desc">
+                Micro-SaaS de auditoria de estoque que cruza bases contábeis (ERP/SAP) com contagens físicas via upload de planilhas (.csv/.xlsx). Calcula acuracidade, Curva ABC (80/15/5) e impacto financeiro (R$), com Copiloto de IA para diagnóstico de causa raiz e exportação automática de relatórios executivos em PDF.
+              </p>
+
+              <div class="mt-5 flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]">React</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]">TypeScript</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]">Tailwind CSS</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]">Recharts</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]" data-i18n="projects.stockguard.tag5">IA Generativa</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]" data-i18n="projects.stockguard.tag6">SAP / Auditoria</span>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-5 border-t border-[#1F2937] flex flex-wrap items-center gap-3">
+              <a
+                href="https://stock-guard-ai-phi.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-[#3B82F6] hover:bg-[#2563EB] text-white text-xs sm:text-sm font-medium transition-colors"
+                data-i18n="projects.stockguard.btnDemo"
+              >
+                Testar ao Vivo ↗
+              </a>
+              <a
+                href="https://github.com/DenerEdu/StockGuard-AI"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-[#0B0F19] border border-[#1F2937] hover:border-[#374151] text-[#D1D5DB] hover:text-white text-xs sm:text-sm font-medium transition-colors"
+                data-i18n="projects.stockguard.btnCode"
+              >
+                Ver Código ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 3: Analisador Financeiro IA -->
+          <article class="surface-card rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-mono text-xs text-[#10B981]">03</span>
+                <span class="font-mono text-[11px] text-[#6B7280]" data-i18n="projects.spaceBadge">
+                  Hugging Face Space
+                </span>
+              </div>
+
+              <h3 class="mt-3 text-lg font-semibold text-[#F9FAFB]" data-i18n="projects.p2.title">
+                Analisador Financeiro IA
+              </h3>
+              <p class="mt-2 text-sm text-[#9CA3AF] leading-relaxed" data-i18n="projects.p2.desc">
+                Ferramenta de análise de sentimento financeiro em português treinada e adaptada para interpretar textos, notícias e cenários de mercado.
+              </p>
+
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]">NLP</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]">Python</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]">Gradio</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]">Hugging Face</span>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-[#1F2937] flex flex-wrap items-center gap-3">
+              <a
+                href="https://huggingface.co/spaces/DenerEdu/analisador-financeiro-ia"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-[#3B82F6]/15 border border-[#3B82F6]/35 hover:bg-[#3B82F6] text-[#93C5FD] hover:text-white text-xs font-medium transition-colors"
+                data-i18n="projects.btnDemo"
+              >
+                Abrir App ↗
+              </a>
+              <a
+                href="https://huggingface.co/spaces/DenerEdu/analisador-financeiro-ia/tree/main"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-[#0B0F19] border border-[#1F2937] hover:border-[#374151] text-[#D1D5DB] hover:text-white text-xs font-medium transition-colors"
+                data-i18n="projects.btnCode"
+              >
+                Código / Arquivos ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 4: Triagem Operacional IA -->
+          <article class="surface-card rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-mono text-xs text-[#3B82F6]">04</span>
+                <span class="font-mono text-[11px] text-[#6B7280]" data-i18n="projects.spaceBadge">
+                  Hugging Face Space
+                </span>
+              </div>
+
+              <h3 class="mt-3 text-lg font-semibold text-[#F9FAFB]" data-i18n="projects.p3.title">
+                Triagem Operacional IA
+              </h3>
+              <p class="mt-2 text-sm text-[#9CA3AF] leading-relaxed" data-i18n="projects.p3.desc">
+                Sistema inteligente para classificação e priorização automática de demandas e riscos operacionais em fluxos financeiros, logísticos e jurídicos.
+              </p>
+
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]" data-i18n="projects.p3.tag1">IA</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]" data-i18n="projects.p3.tag2">Automação</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]">Python</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]">Gradio</span>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-[#1F2937] flex flex-wrap items-center gap-3">
+              <a
+                href="https://huggingface.co/spaces/DenerEdu/triagem-operacional-ia"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-[#3B82F6]/15 border border-[#3B82F6]/35 hover:bg-[#3B82F6] text-[#93C5FD] hover:text-white text-xs font-medium transition-colors"
+                data-i18n="projects.btnDemo"
+              >
+                Abrir App ↗
+              </a>
+              <a
+                href="https://huggingface.co/spaces/DenerEdu/triagem-operacional-ia/tree/main"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-[#0B0F19] border border-[#1F2937] hover:border-[#374151] text-[#D1D5DB] hover:text-white text-xs font-medium transition-colors"
+                data-i18n="projects.btnCode"
+              >
+                Código / Arquivos ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 5: Transcritor de Voz Whisper -->
+          <article class="surface-card rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-mono text-xs text-[#10B981]">05</span>
+                <span class="font-mono text-[11px] text-[#6B7280]" data-i18n="projects.spaceBadge">
+                  Hugging Face Space
+                </span>
+              </div>
+
+              <h3 class="mt-3 text-lg font-semibold text-[#F9FAFB]" data-i18n="projects.p4.title">
+                Transcritor de Voz Whisper
+              </h3>
+              <p class="mt-2 text-sm text-[#9CA3AF] leading-relaxed" data-i18n="projects.p4.desc">
+                Estúdio de transcrição de áudio para texto utilizando OpenAI Whisper para transformar gravações e reuniões em registros estruturados.
+              </p>
+
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]">Whisper</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]" data-i18n="projects.p4.tag2">Áudio</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]">Python</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]">Gradio</span>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-[#1F2937] flex flex-wrap items-center gap-3">
+              <a
+                href="https://huggingface.co/spaces/DenerEdu/Transcritor-Voz-Whisper"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-[#3B82F6]/15 border border-[#3B82F6]/35 hover:bg-[#3B82F6] text-[#93C5FD] hover:text-white text-xs font-medium transition-colors"
+                data-i18n="projects.btnDemo"
+              >
+                Abrir App ↗
+              </a>
+              <a
+                href="https://huggingface.co/spaces/DenerEdu/Transcritor-Voz-Whisper/tree/main"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-[#0B0F19] border border-[#1F2937] hover:border-[#374151] text-[#D1D5DB] hover:text-white text-xs font-medium transition-colors"
+                data-i18n="projects.btnCode"
+              >
+                Código / Arquivos ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 6: VisionTrack -->
+          <article class="surface-card rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-mono text-xs text-[#3B82F6]">06</span>
+                <span class="font-mono text-[11px] text-[#6B7280]" data-i18n="projects.spaceBadge">
+                  Hugging Face Space
+                </span>
+              </div>
+
+              <h3 class="mt-3 text-lg font-semibold text-[#F9FAFB]" data-i18n="projects.p5.title">
+                VisionTrack
+              </h3>
+              <p class="mt-2 text-sm text-[#9CA3AF] leading-relaxed" data-i18n="projects.p5.desc">
+                Detector de objetos em imagens baseado no modelo Meta DETR, executando identificação e contagem visual automatizada no navegador.
+              </p>
+
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]" data-i18n="projects.p5.tag1">Visão Computacional</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]">DETR</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#0B0F19] border border-[#1F2937] text-[#D1D5DB]">Python</span>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-[#1F2937] flex flex-wrap items-center gap-3">
+              <a
+                href="https://huggingface.co/spaces/DenerEdu/Detector-Objetos-IA"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-[#3B82F6]/15 border border-[#3B82F6]/35 hover:bg-[#3B82F6] text-[#93C5FD] hover:text-white text-xs font-medium transition-colors"
+                data-i18n="projects.btnDemo"
+              >
+                Abrir App ↗
+              </a>
+              <a
+                href="https://huggingface.co/spaces/DenerEdu/Detector-Objetos-IA/tree/main"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-[#0B0F19] border border-[#1F2937] hover:border-[#374151] text-[#D1D5DB] hover:text-white text-xs font-medium transition-colors"
+                data-i18n="projects.btnCode"
+              >
+                Código / Arquivos ↗
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           6. SKILLS
+           ================================================================ -->
+      <section id="skills" class="py-16 lg:py-20 border-b border-[#1F2937] reveal">
+        <p class="font-mono text-xs tracking-[0.14em] uppercase text-[#6B7280] mb-3" data-i18n="skills.eyebrow">
+          05 / SKILLS
+        </p>
+        <h2
+          class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F9FAFB]"
+          data-i18n-html="skills.titleHtml"
+        >
+          Stack técnica &amp; <em class="font-serif italic text-[#10B981] font-medium">ferramentas</em>.
+        </h2>
+
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Category 1: Dados & IA -->
+          <div class="surface-card rounded-2xl p-6">
+            <div class="flex items-center gap-2.5 mb-5">
+              <span class="w-2 h-2 rounded-full bg-[#3B82F6]" aria-hidden="true"></span>
+              <h3 class="text-base font-semibold text-[#F9FAFB]" data-i18n="skills.cat1.title">Dados &amp; IA</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B0F19] border border-[#1F2937] text-[#E5E7EB]">Python</span>
+              <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B0F19] border border-[#1F2937] text-[#E5E7EB]">SQL</span>
+              <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B0F19] border border-[#1F2937] text-[#E5E7EB]">Prompt Engineering</span>
+              <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B0F19] border border-[#1F2937] text-[#E5E7EB]">Gradio</span>
+              <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B0F19] border border-[#1F2937] text-[#E5E7EB]">Hugging Face</span>
+            </div>
+          </div>
+
+          <!-- Category 2: Gestão & ERP -->
+          <div class="surface-card rounded-2xl p-6">
+            <div class="flex items-center gap-2.5 mb-5">
+              <span class="w-2 h-2 rounded-full bg-[#10B981]" aria-hidden="true"></span>
+              <h3 class="text-base font-semibold text-[#F9FAFB]" data-i18n="skills.cat2.title">Gestão &amp; ERP</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B0F19] border border-[#1F2937] text-[#E5E7EB]" data-i18n="skills.cat2.p1">Excel Avançado</span>
+              <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B0F19] border border-[#1F2937] text-[#E5E7EB]">SAP</span>
+              <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B0F19] border border-[#1F2937] text-[#E5E7EB]" data-i18n="skills.cat2.p3">Controle Financeiro</span>
+              <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B0F19] border border-[#1F2937] text-[#E5E7EB]" data-i18n="skills.cat2.p4">Orçamento</span>
+            </div>
+          </div>
+
+          <!-- Category 3: Desenvolvimento & Ferramentas -->
+          <div class="surface-card rounded-2xl p-6">
+            <div class="flex items-center gap-2.5 mb-5">
+              <span class="w-2 h-2 rounded-full bg-[#3B82F6]" aria-hidden="true"></span>
+              <h3 class="text-base font-semibold text-[#F9FAFB]" data-i18n="skills.cat3.title">Desenvolvimento &amp; Ferramentas</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B0F19] border border-[#1F2937] text-[#E5E7EB]">HTML</span>
+              <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B0F19] border border-[#1F2937] text-[#E5E7EB]">CSS</span>
+              <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B0F19] border border-[#1F2937] text-[#E5E7EB]">JavaScript</span>
+              <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B0F19] border border-[#1F2937] text-[#E5E7EB]">Git / GitHub</span>
+              <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B0F19] border border-[#1F2937] text-[#E5E7EB]">Visual Studio</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           7. FORMAÇÃO (EDUCATION)
+           ================================================================ -->
+      <section id="formacao" class="py-16 lg:py-20 border-b border-[#1F2937] reveal">
+        <p class="font-mono text-xs tracking-[0.14em] uppercase text-[#6B7280] mb-3" data-i18n="education.eyebrow">
+          06 / FORMAÇÃO
+        </p>
+        <h2
+          class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F9FAFB]"
+          data-i18n-html="education.titleHtml"
+        >
+          Base <em class="font-serif italic text-[#10B981] font-medium">acadêmica</em> contínua.
+        </h2>
+
+        <div class="mt-8 space-y-4">
+          <article class="surface-card rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row sm:items-start justify-between gap-6">
+            <div class="space-y-2.5 max-w-2xl">
+              <span
+                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-mono bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/25"
+                data-i18n="education.status"
+              >
+                4º Semestre • Previsão: 2028
+              </span>
+
+              <h3 class="text-xl font-semibold text-[#F9FAFB]" data-i18n="education.degree">
+                Bacharelado em Sistemas de Informação
+              </h3>
+              <p class="text-sm font-medium text-[#3B82F6]" data-i18n="education.institution">
+                Centro Universitário UNIFAFIBE (Bebedouro, SP)
+              </p>
+              <p class="pt-1 text-sm text-[#9CA3AF] leading-relaxed" data-i18n="education.desc">
+                Formação voltada para engenharia de software, modelagem e consulta de bancos de dados, arquitetura de sistemas e desenvolvimento de aplicações orientadas a dados e Inteligência Artificial.
+              </p>
+            </div>
+
+            <div class="shrink-0">
+              <a
+                href="https://github.com/DenerEdu/Portfolio-Academico"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-[#0B0F19] border border-[#1F2937] hover:border-[#3B82F6]/50 text-xs sm:text-sm font-medium text-[#D1D5DB] hover:text-white transition-colors"
+                data-i18n="education.repoLink"
+              >
+                Portfólio Acadêmico (GitHub) ↗
+              </a>
+            </div>
+          </article>
+
+          <article class="surface-card rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="space-y-1">
+              <h3 class="text-base font-semibold text-[#F9FAFB]" data-i18n="education.item2.degree">
+                Administração de Empresas
+              </h3>
+              <p class="text-sm text-[#9CA3AF]" data-i18n="education.item2.institution">
+                Universidade Presbiteriana Mackenzie (São Paulo, SP)
+              </p>
+            </div>
+            <span
+              class="inline-flex items-center self-start sm:self-center px-3 py-1 rounded-full text-xs font-mono bg-[#1F2937] text-[#9CA3AF]"
+              data-i18n="education.item2.status"
+            >
+              2017 • Cursado parcialmente
+            </span>
+          </article>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           8. CONTATO (CONTACT)
+           ================================================================ -->
+      <section id="contato" class="pt-16 lg:pt-20 pb-12 reveal">
+        <p class="font-mono text-xs tracking-[0.14em] uppercase text-[#6B7280] mb-3" data-i18n="contact.eyebrow">
+          07 / CONTATO
+        </p>
+
+        <h2
+          class="text-3xl sm:text-4xl font-semibold tracking-tight text-[#F9FAFB] max-w-2xl leading-tight"
+          data-i18n-html="contact.headlineHtml"
+        >
+          Vamos construir algo <em class="font-serif italic text-[#10B981] font-medium">excepcional</em> juntos?
+        </h2>
+
+        <p class="mt-4 text-sm sm:text-base text-[#9CA3AF] max-w-2xl leading-relaxed" data-i18n="contact.subtitle">
+          Aberto a oportunidades em Dados, Automação de Processos, Análise Financeira orientada a Dados e desenvolvimento de soluções com IA Generativa.
+        </p>
+
+        <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-5">
+          <!-- Direct Email & Copy Card -->
+          <div class="lg:col-span-7 surface-card rounded-2xl p-6 flex flex-col justify-between gap-5">
+            <div>
+              <span class="font-mono text-[11px] uppercase tracking-wider text-[#6B7280]" data-i18n="contact.emailLabel">
+                E-mail direto
+              </span>
+              <div class="mt-3 flex flex-wrap items-center justify-between gap-3">
+                <a
+                  id="contact-email-link"
+                  href="mailto:dener.03@gmail.com"
+                  class="text-base sm:text-lg font-medium text-[#F9FAFB] hover:text-[#3B82F6] transition-colors break-all"
+                >
+                  <span id="contact-email-text">dener.03@gmail.com</span>
+                </a>
+
+                <button
+                  id="copy-email-btn"
+                  type="button"
+                  data-i18n-aria="contact.copyAria"
+                  aria-label="Copiar endereço de e-mail"
+                  class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#0B0F19] border border-[#1F2937] hover:border-[#374151] text-xs font-medium text-[#E5E7EB] transition-all"
+                >
+                  <svg id="copy-icon-default" class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2m-6 12h8a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2z" />
+                  </svg>
+                  <svg id="copy-icon-done" class="w-3.5 h-3.5 hidden" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span id="copy-email-label" aria-live="polite" data-i18n="contact.copyBtn">Copiar e-mail</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-[#1F2937] flex flex-wrap items-center gap-3">
+              <a
+                href="assets/curriculo-dener-eduardo.pdf"
+                download="curriculo-dener-eduardo.pdf"
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#3B82F6] hover:bg-[#2563EB] text-white text-sm font-semibold shadow-lg shadow-[#3B82F6]/20 transition-all"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z" />
+                </svg>
+                <span data-i18n="contact.downloadCv">Baixar Currículo (PDF)</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Social & Profiles Card -->
+          <div class="lg:col-span-5 surface-card rounded-2xl p-6 flex flex-col justify-between gap-4">
+            <span class="font-mono text-[11px] uppercase tracking-wider text-[#6B7280]" data-i18n="contact.socialLabel">
+              Redes &amp; Plataformas
+            </span>
+
+            <div class="space-y-2.5">
+              <a
+                href="https://www.linkedin.com/in/denereduardo/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between px-4 py-3 rounded-xl bg-[#0B0F19] border border-[#1F2937] hover:border-[#3B82F6]/50 text-sm font-medium text-[#E5E7EB] hover:text-white transition-colors"
+              >
+                <span>LinkedIn</span>
+                <span class="font-mono text-xs text-[#6B7280]">in/denereduardo ↗</span>
+              </a>
+
+              <a
+                href="https://github.com/DenerEdu"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between px-4 py-3 rounded-xl bg-[#0B0F19] border border-[#1F2937] hover:border-[#3B82F6]/50 text-sm font-medium text-[#E5E7EB] hover:text-white transition-colors"
+              >
+                <span>GitHub</span>
+                <span class="font-mono text-xs text-[#6B7280]">@DenerEdu ↗</span>
+              </a>
+
+              <a
+                href="https://huggingface.co/DenerEdu"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between px-4 py-3 rounded-xl bg-[#0B0F19] border border-[#1F2937] hover:border-[#10B981]/50 text-sm font-medium text-[#E5E7EB] hover:text-white transition-colors"
+              >
+                <span>Hugging Face</span>
+                <span class="font-mono text-xs text-[#6B7280]">@DenerEdu ↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Minimal Footer -->
+      <footer class="mt-10 pt-8 border-t border-[#1F2937] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#6B7280]">
+        <p data-i18n="footer.rights">© 2026 Dener Eduardo. Todos os direitos reservados.</p>
+        <a
+          href="#inicio"
+          class="font-mono hover:text-[#F9FAFB] transition-colors"
+          data-i18n="footer.backToTop"
+        >
+          Voltar ao topo ↑
+        </a>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- Bilingual Dictionary & Application Logic -->
+  <script src="lang.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
